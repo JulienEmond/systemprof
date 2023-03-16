@@ -23,7 +23,7 @@ def liste_des_éléves():
  end_date3 = subscription3["points"]
  end_date4 = subscription4["points"]
  end_date5 = subscription5["points"]
- print(f"Systéme Points\n\nListe des Éléves\n\n1. Julien Emond | {end_date} points.\n2. Anthony Morin | {end_date1} points.\n3. Émile Maziade | {end_date2} points.\n4. Tawhid Smiti | {end_date3} points.\n5. Gabriel Verret | {end_date4} points.\n6. Nathan Le Royer | {end_date5} points.\n")
+ print(f"Systéme Points\n\nListe des Éléves\n\n[{Fore.YELLOW}1{Fore.RESET}] Julien Emond | {end_date} points.\n[{Fore.YELLOW}2{Fore.RESET}] Anthony Morin | {end_date1} points.\n[{Fore.YELLOW}3{Fore.RESET}] Émile Maziade | {end_date2} points.\n[{Fore.YELLOW}4{Fore.RESET}] Tawhid Smiti | {end_date3} points.\n[{Fore.YELLOW}5{Fore.RESET}] Gabriel Verret | {end_date4} points.\n[{Fore.YELLOW}6{Fore.RESET}] Nathan Le Royer | {end_date5} points.\n")
  os.system('pause')
  admin_actions()
 
