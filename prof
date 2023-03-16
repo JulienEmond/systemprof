@@ -1,1 +1,168 @@
-print('hi')
+from pymongo import MongoClient
+import os
+import time
+from colorama import Fore
+
+mongo_db = "mongodb+srv://vibpredictorlicensing:c69EeM1vFBE0j2sI@cluster0.8j4fleq.mongodb.net/?retryWrites=true&w=majority"
+
+client = MongoClient(mongo_db)
+db = client["subscription_db"]
+subscriptions = db.subscriptions
+
+def liste_des_éléves():
+ os.system('cls')
+ subscription = subscriptions.find_one({"id_éléve": str(1)})
+ subscription1 = subscriptions.find_one({"id_éléve": str(2)})
+ subscription2 = subscriptions.find_one({"id_éléve": str(3)})
+ subscription3 = subscriptions.find_one({"id_éléve": str(4)})
+ subscription4 = subscriptions.find_one({"id_éléve": str(5)})
+ subscription5 = subscriptions.find_one({"id_éléve": str(6)})
+ end_date = subscription["points"]
+ end_date1 = subscription1["points"]
+ end_date2 = subscription2["points"]
+ end_date3 = subscription3["points"]
+ end_date4 = subscription4["points"]
+ end_date5 = subscription5["points"]
+ print(f"Systéme Points\n\nListe des Éléves\n\n1. Julien Emond | {end_date} points.\n2. Anthony Morin | {end_date1} points.\n3. Émile Maziade | {end_date2} points.\n4. Tawhid Smiti | {end_date3} points.\n5. Gabriel Verret | {end_date4} points.\n6. Nathan Le Royer | {end_date5} points.\n")
+ os.system('pause')
+ admin_actions()
+
+def admin_actions():
+ os.system('cls')
+ print(f"Systéme Points\n\nProgramme par: Julien Emond\n\n[{Fore.YELLOW}1{Fore.RESET}] Liste des Éléves\n[{Fore.YELLOW}2{Fore.RESET}] Ajouter des Points (un(e) seul éléve)\n[{Fore.YELLOW}3{Fore.RESET}] Enlever des Points (un(e) seul éléve)\n[{Fore.YELLOW}4{Fore.RESET}] Ajouter des Points (tout les éléves)\n[{Fore.YELLOW}5{Fore.RESET}] Enlever des Points (tout les éléves)\n")
+ admin_input = input('Choix : ')
+ if admin_input == "1":
+   liste_des_éléves()
+ elif admin_input == "2":
+  os.system('cls')
+  print("Systéme Points\n\nProgramme par: Julien Emond\n\nAjouter des Points\n\n1. Julien Emond\n2. Anthony Morin\n3. Émile Maziade\n4. Tawhid Smiti\n5. Gabriel Verret\n6. Nathan Le Royer\n")
+  id_éléve = input('ID Éléve : ')
+  subscription = subscriptions.find_one({"id_éléve": str(id_éléve)})
+  end_date = subscription["points"]
+  points_a_ajouter = input('Points : ')
+  nouveau_points = int(end_date) + int(points_a_ajouter)
+  subscriptions.update_one(
+            {"id_éléve": str(id_éléve)},
+            {"$set": {"points": nouveau_points}}
+  )
+  print(f"\n{int(end_date)} -> {nouveau_points} points.\n")
+  os.system('pause')
+  admin_actions()
+ elif admin_input == "3":
+  os.system('cls')
+  print("Systéme Points\n\nProgramme par: Julien Emond\n\nEnlever des Points\n\n1. Julien Emond\n2. Anthony Morin\n3. Émile Maziade\n4. Tawhid Smiti\n5. Gabriel Verret\n6. Nathan Le Royer\n")
+  id_éléve = input('ID Éléve : ')
+  end_date = subscription["points"]
+  points_a_ajouter = input('Points : ')
+  nouveau_points = int(end_date) - int(points_a_ajouter)
+  subscriptions.update_one(
+            {"id_éléve": str(1)},
+            {"$set": {"points": nouveau_points}}
+  )
+  print(f"\n{int(end_date)} -> {nouveau_points} points.\n")
+  os.system('pause')
+  admin_actions()
+ elif admin_input == "4":
+  os.system('cls')
+  print("Systéme Points\n\nProgramme par: Julien Emond\n\nAjouter des Points (tout les éléves)\n")
+  subscription = subscriptions.find_one({"id_éléve": str(1)})
+  subscription1 = subscriptions.find_one({"id_éléve": str(2)})
+  subscription2 = subscriptions.find_one({"id_éléve": str(3)})
+  subscription3 = subscriptions.find_one({"id_éléve": str(4)})
+  subscription4 = subscriptions.find_one({"id_éléve": str(5)})
+  subscription5 = subscriptions.find_one({"id_éléve": str(6)})
+  end_date = subscription["points"]
+  end_date1 = subscription1["points"]
+  end_date2 = subscription2["points"]
+  end_date3 = subscription3["points"]
+  end_date4 = subscription4["points"]
+  end_date5 = subscription5["points"]
+  points_a_ajouter = input('Points : ')
+  nouveau_points = int(end_date) + int(points_a_ajouter)
+  nouveau_points1 = int(end_date1) + int(points_a_ajouter)
+  nouveau_points2 = int(end_date2) + int(points_a_ajouter)
+  nouveau_points3 = int(end_date3) + int(points_a_ajouter)
+  nouveau_points4 = int(end_date4) + int(points_a_ajouter)
+  nouveau_points5 = int(end_date5) + int(points_a_ajouter)
+  subscriptions.update_one(
+            {"id_éléve": str(1)},
+            {"$set": {"points": nouveau_points}}
+  )
+  subscriptions.update_one(
+            {"id_éléve": str(2)},
+            {"$set": {"points": nouveau_points1}}
+  )
+  subscriptions.update_one(
+            {"id_éléve": str(3)},
+            {"$set": {"points": nouveau_points2}}
+  )
+  subscriptions.update_one(
+            {"id_éléve": str(4)},
+            {"$set": {"points": nouveau_points3}}
+  )
+  subscriptions.update_one(
+            {"id_éléve": str(5)},
+            {"$set": {"points": nouveau_points4}}
+  )
+  subscriptions.update_one(
+            {"id_éléve": str(6)},
+            {"$set": {"points": nouveau_points5}}
+  )
+  print(f"Ajouté {points_a_ajouter} points a tout les éléves.\n")
+  os.system('pause')
+  admin_actions()
+ elif admin_input == "5":
+  os.system('cls')
+  print("Systéme Points\n\nProgramme par: Julien Emond\n\nEnlever des Points (tout les éléves)\n")
+  subscription = subscriptions.find_one({"id_éléve": str(1)})
+  subscription1 = subscriptions.find_one({"id_éléve": str(2)})
+  subscription2 = subscriptions.find_one({"id_éléve": str(3)})
+  subscription3 = subscriptions.find_one({"id_éléve": str(4)})
+  subscription4 = subscriptions.find_one({"id_éléve": str(5)})
+  subscription5 = subscriptions.find_one({"id_éléve": str(6)})
+  end_date = subscription["points"]
+  end_date1 = subscription1["points"]
+  end_date2 = subscription2["points"]
+  end_date3 = subscription3["points"]
+  end_date4 = subscription4["points"]
+  end_date5 = subscription5["points"]
+  points_a_ajouter = input('Points : ')
+  nouveau_points = int(end_date) - int(points_a_ajouter)
+  nouveau_points1 = int(end_date1) - int(points_a_ajouter)
+  nouveau_points2 = int(end_date2) - int(points_a_ajouter)
+  nouveau_points3 = int(end_date3) - int(points_a_ajouter)
+  nouveau_points4 = int(end_date4) - int(points_a_ajouter)
+  nouveau_points5 = int(end_date5) - int(points_a_ajouter)
+  subscriptions.update_one(
+            {"id_éléve": str(1)},
+            {"$set": {"points": nouveau_points}}
+  )
+  subscriptions.update_one(
+            {"id_éléve": str(2)},
+            {"$set": {"points": nouveau_points1}}
+  )
+  subscriptions.update_one(
+            {"id_éléve": str(3)},
+            {"$set": {"points": nouveau_points2}}
+  )
+  subscriptions.update_one(
+            {"id_éléve": str(4)},
+            {"$set": {"points": nouveau_points3}}
+  )
+  subscriptions.update_one(
+            {"id_éléve": str(5)},
+            {"$set": {"points": nouveau_points4}}
+  )
+  subscriptions.update_one(
+            {"id_éléve": str(6)},
+            {"$set": {"points": nouveau_points5}}
+  )
+  print(f"Enlever {points_a_ajouter} points a tout les éléves.\n")
+  os.system('pause')
+  admin_actions()
+ else:
+  os.system('cls')
+  admin_actions()
+
+os.system('cls')
+admin_actions()
