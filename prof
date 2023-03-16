@@ -51,7 +51,7 @@ def admin_actions():
   id_éléve = input('Identifiant Éléve : ')
   subscription = subscriptions.find_one({"id_éléve": str(id_éléve)})
   end_date = subscription["points"]
-  points_a_ajouter = input('Points : ')
+  points_a_ajouter = input('Points à Ajouter: ')
   nouveau_points = int(end_date) + int(points_a_ajouter)
   subscriptions.update_one(
             {"id_éléve": str(id_éléve)},
