@@ -47,8 +47,8 @@ def admin_actions():
   end_date3 = subscription3["points"]
   end_date4 = subscription4["points"]
   end_date5 = subscription5["points"]
-  print("Systéme Points\n\nProgramme par: Julien Emond\n\nAjouter des Points (un(e) seul éléve) \n\n[{Fore.YELLOW}1{Fore.RESET}] Julien Emond | {end_date} points.\n[{Fore.YELLOW}2{Fore.RESET}] Anthony Morin | {end_date1} points.\n[{Fore.YELLOW}3{Fore.RESET}] Émile Maziade | {end_date2} points.\n[{Fore.YELLOW}4{Fore.RESET}] Tawhid Smiti | {end_date3} points.\n[{Fore.YELLOW}5{Fore.RESET}] Gabriel Verret | {end_date4} points.\n[{Fore.YELLOW}6{Fore.RESET}] Nathan Le Royer | {end_date5} points.\n")
-  id_éléve = input('ID Éléve : ')
+  print(f"Systéme Points\n\nProgramme par: Julien Emond\n\nAjouter des Points (un(e) seul éléve) \n\n[{Fore.YELLOW}1{Fore.RESET}] Julien Emond | {end_date} points.\n[{Fore.YELLOW}2{Fore.RESET}] Anthony Morin | {end_date1} points.\n[{Fore.YELLOW}3{Fore.RESET}] Émile Maziade | {end_date2} points.\n[{Fore.YELLOW}4{Fore.RESET}] Tawhid Smiti | {end_date3} points.\n[{Fore.YELLOW}5{Fore.RESET}] Gabriel Verret | {end_date4} points.\n[{Fore.YELLOW}6{Fore.RESET}] Nathan Le Royer | {end_date5} points.\n")
+  id_éléve = input('Identifiant Éléve : ')
   subscription = subscriptions.find_one({"id_éléve": str(id_éléve)})
   end_date = subscription["points"]
   points_a_ajouter = input('Points : ')
